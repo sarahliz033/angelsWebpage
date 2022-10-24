@@ -25,13 +25,9 @@
 	private $zip;    // zip code - integer
 	private $phone1;   // primary phone -- home, cell, or work
 	private $phone1type; // home, cell, or work
-	private $phone2;   // secondary phone -- home, cell, or work
-	private $phone2type; // home, cell, or work
 	private $birthday;     // format: 64-03-12
 	private $email;   // email address as a string
-	private $employer;    // current employer or school attending
 	private $position;    // job title or "student"
-	private $credithours; // hours required if volunteering for academic credit; otherwise blank
 	private $howdidyouhear;  // about RMH; internet, family, friend, volunteer, other (explain)
 	private $commitment;  // App: "year" or "semester" (if student) or N/A (guest chef, events, or projects)
 	private $motivation;   // App: why interested in RMH?
@@ -44,13 +40,12 @@
 	private $availability; // array of day:hours:venue triples; e.g., Mon:9-12:bangor, Sat:afternoon:portland
 	private $schedule;     // array of scheduled shift ids; e.g., 15-01-05:9-12:bangor
 	private $hours;        // array of actual hours logged; e.g., 15-01-05:0930-1300:portland:3.5
-	private $notes;        // notes that only the manager can see and edit
 	private $password;     // password for calendar and database access: default = $id
 
 
-	function __construct($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
-			$screening_type, $screening_status, $st, $emp, $pos, $credithours, $comm, $mot, $spe,
-			$convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass) {
+	function __construct($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $e, $t,
+			$screening_type, $screening_status, $st, $emp, $pos, $comm, $spe,
+			$convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $pass) {
 		$this->id = $f . $p1;
 		$this->start_date = $sd;
 		$this->venue = $v;
@@ -62,16 +57,12 @@
 		$this->zip = $z;
 		$this->phone1 = $p1;
 		$this->phone1type = $p1t;
-		$this->phone2 = $p2;
-		$this->phone2type = $p2t;
 		$this->birthday = $bd;
 		$this->email = $e;
 		$this->employer = $emp;
 		$this->position = $pos;
-		$this->credithours = $credithours;
 		$this->howdidyouhear = $hdyh;
 		$this->commitment = $comm;
-		$this->motivation = $mot;
 		$this->specialties = $spe;
 		$this->convictions = $convictions;
 		if ($t !== "")
@@ -97,7 +88,6 @@
 			$this->hours = explode(',', $hrs);
 		else
 			$this->hours = array();
-		$this->notes = $notes;
 		if ($pass == "")
 			$this->password = md5($this->id);
 		else
@@ -148,14 +138,6 @@
 		return $this->phone1type;
 	}
 
-	function get_phone2() {
-		return $this->phone2;
-	}
-
-	function get_phone2type() {
-		return $this->phone2type;
-	}
-
 	function get_birthday() {
 		return $this->birthday;
 	}
@@ -172,20 +154,12 @@
 		return $this->position;
 	}
 
-	function get_credithours() {
-		return $this->credithours;
-	}
-
 	function get_howdidyouhear() {
 		return $this->howdidyouhear;
 	}
 
 	function get_commitment() {
 		return $this->commitment;
-	}
-
-	function get_motivation() {
-		return $this->motivation;
 	}
 
 	function get_specialties() {
@@ -230,10 +204,6 @@
 
 	function get_hours() {
 		return $this->hours;
-	}
-
-	function get_notes() {
-		return $this->notes;
 	}
 
 	function get_password() {

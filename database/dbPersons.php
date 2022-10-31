@@ -41,19 +41,26 @@ function add_person($person) {
                 $person->get_zip() . '","' .
                 $person->get_phone1() . '","' .
                 $person->get_phone1type() . '","' .
+                $person->get_phone2() . '","' .
+                $person->get_phone2type() . '","' .
                 $person->get_birthday() . '","' .
                 $person->get_email() . '","' .
                 $person->get_employer() . '","' . 
                 $person->get_position() . '","' . 
+                $person->get_credithours() . '","' . 
+                $person->get_howdidyouhear() . '","' . 
                 $person->get_commitment() . '","' . 
-                $person->get_specialties() . '","' .  
+                $person->get_motivation() . '","' . 
+                $person->get_specialties() . '","' . 
+                $person->get_convictions() . '","' . 
                 implode(',', $person->get_type()) . '","' .
                 $person->get_screening_type() . '","' .
                 implode(',', $person->get_screening_status()) . '","' .
                 $person->get_status() . '","' .
                 implode(',', $person->get_availability()) . '","' .
                 implode(',', $person->get_schedule()) . '","' .
-                implode(',', $person->get_hours()) . '","' ..
+                implode(',', $person->get_hours()) . '","' .
+                $person->get_notes() . '","' .
                 $person->get_password() .
                 '");');							
         mysqli_close($con);
@@ -209,6 +216,8 @@ function make_a_person($result_row) {
                     $result_row['zip'],
                     $result_row['phone1'],
                     $result_row['phone1type'],
+                    $result_row['phone2'],
+                    $result_row['phone2type'],
                     $result_row['email'],
                     $result_row['type'],
                     $result_row['screening_type'],
@@ -218,12 +227,16 @@ function make_a_person($result_row) {
                     $result_row['position'],
                     $result_row['hours'],
                     $result_row['commitment'],
+                    $result_row['motivation'],
                     $result_row['specialties'],
+                    $result_row['convictions'],
                     $result_row['availability'],
                     $result_row['schedule'],
                     $result_row['hours'],
                     $result_row['birthday'],
                     $result_row['start_date'],
+                    $result_row['howdidyouhear'],
+                    $result_row['notes'],
                     $result_row['password']);   
     return $thePerson;
 }

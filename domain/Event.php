@@ -13,13 +13,13 @@ class Event{
     private $zip;
 
     function __construct($f, $n, $d, $a, $s, $c, $z){
-        $this->id = $f
-        $this->name = $n
-        $this->description = $d
-        $this->address = $a
-        $this->state = $s
-        $this->city = $c
-        $this->zip = $z
+        $this->id = $f;
+        $this->name = $n;
+        $this->description = $d;
+        $this->address = $a;
+        $this->state = $s;
+        $this->city = $c;
+        $this->zip = $z;
 
 
     }

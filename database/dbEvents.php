@@ -26,7 +26,7 @@ function add_Event($event) {
     $result = mysqli_query($con,$query);
     //if there's no entry for this id, add it
     if ($result == null || mysqli_num_rows($result) == 0) {
-        mysqli_query($con,'INSERT INTO dbPersons VALUES("' .
+        mysqli_query($con,'INSERT INTO dbEvents VALUES("' .
                 $event->get_id() . '","' .
                 $event->get_name() . '","' .
                 $event->get_description() . '","' .
@@ -100,6 +100,7 @@ function retrieve_events_by_name ($name) {
  * if none there, return false
  */
 /*
+   
 function getall_dbEvents($name_from, $name_to, $venue) {
     $con=connect();
     $query = "SELECT * FROM dbPersons";
@@ -148,7 +149,7 @@ function make_a_event($result_row2) {
                     $result_row2['address'],
                     $result_row2['state'],
                     $result_row2['city'],
-                    $result_row2['zip'],
+                    $result_row2['zip']);
     return $theEvent;
 }
 

@@ -28,11 +28,8 @@
 	private $birthday;     // format: 64-03-12
 	private $email;   // email address as a string
 	private $position;    // job title or "student"
-	private $howdidyouhear;  // about RMH; internet, family, friend, volunteer, other (explain)
 	private $commitment;  // App: "year" or "semester" (if student) or N/A (guest chef, events, or projects)
-	private $motivation;   // App: why interested in RMH?
 	private $specialties;  // App: special interests and hobbies related to RMH
-	private $convictions;  // App: ever convicted of a felony?  "yes" or blank
 	private $type;       // array of "volunteer", "weekendmgr", "sub", "guestchef", "events", "projects", "manager"
 	private $screening_type; // if status is "applicant", type of screening used for this applicant
 	private $screening_status; // array of dates showing completion of screening steps
@@ -44,8 +41,7 @@
 
 
 	function __construct($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $e, $t,
-			$screening_type, $screening_status, $st, $emp, $pos, $comm, $spe,
-			$convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $pass) {
+			$screening_type, $screening_status, $st, $emp, $pos, $spe, $av, $sch, $hrs, $bd, $sd, $pass) {
 		$this->id = $f . $p1;
 		$this->start_date = $sd;
 		$this->venue = $v;
@@ -61,10 +57,7 @@
 		$this->email = $e;
 		$this->employer = $emp;
 		$this->position = $pos;
-		$this->howdidyouhear = $hdyh;
-		$this->commitment = $comm;
 		$this->specialties = $spe;
-		$this->convictions = $convictions;
 		if ($t !== "")
 			$this->type = explode(',', $t);
 		else
@@ -154,10 +147,6 @@
 		return $this->position;
 	}
 
-	function get_howdidyouhear() {
-		return $this->howdidyouhear;
-	}
-
 	function get_commitment() {
 		return $this->commitment;
 	}
@@ -166,9 +155,6 @@
 		return $this->specialties;
 	}
 
-	function get_convictions() {
-		return $this->convictions;
-	}
 
 	function get_type() {
 		return $this->type;

@@ -209,7 +209,7 @@ if ($id == 'new') {
                     }
 
                     // try to reset the person's password
-                    else if ($_POST['reset_pass'] == "RESET") {
+                    else if ($_POST['reset_pass'] == "Reset") {
                         $id = $_POST['old_id'];
                         $result = remove_person($id);
                         $pass = $first_name . $clean_phone1;

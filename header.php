@@ -14,7 +14,7 @@
 </style>
 <div id="header">
 <!--<br><br><img src="images/rmhHeader.gif" align="center"><br>
-<h1><br><br>Homebase <br></h1>-->
+<h1><br><br>Angels on Wheels <br></h1>-->
 
 </div>
 
@@ -74,7 +74,7 @@
         	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         }
         else {
-        	echo " <br><b>"."Homebase"."</b> ";
+        	echo " <br><b>"."Angels on Wheels"."</b> ";
 	        if ($_SESSION['access_level'] >= 1) {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');

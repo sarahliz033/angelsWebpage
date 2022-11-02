@@ -178,7 +178,7 @@ if ($id == 'new') {
                     //used for url path in linking user back to edit form
                     $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
                     //step two: try to make the deletion, password change, addition, or change
-                    if ($_POST['deleteMe'] == "DELETE") {
+                    if ($_POST['deleteMe'] == "Delete") {
                         $result = retrieve_person($id);
                         if (!$result)
                             echo('<p>Unable to delete. ' . $first_name . ' ' . $last_name . ' is not in the database. <br>Please report this error to the House Manager.');

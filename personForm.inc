@@ -331,8 +331,8 @@ if ($_SESSION['access_level']==0)
         else
             echo('Hit <input type="submit" value="Submit" name="Submit Edits"> to submit these edits.<br /><br />');
         if ($id != 'new' && $_SESSION['access_level'] >= 2) {
-            echo ('<input type="checkbox" name="deleteMe" value="DELETE"> Check this box and then hit ' .
-            '<input type="submit" value="Delete" name="Delete Entry"> to delete this entry. <br />' .
+            echo ( 
+            'Hit <input type="submit" value="Delete" name="deleteMe"> to delete this entry. <br />' .
             '<input type="checkbox" name="reset_pass" value="RESET"> Check this box and then hit ' .
             '<input type="submit" value="Reset Password" name="Reset Password"> to reset this person\'s password.</p>');
         }

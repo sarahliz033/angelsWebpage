@@ -18,7 +18,7 @@
 include_once(dirname(__FILE__).'/../domain/Event.php');
 include_once('dbinfo.php');
 
-echo ("COCK AND BALLS \n");
+echo ("CALLS \n");
 function add_Event($event) {
     echo("fitness grand pacer\n");
     if (!$event instanceof Event)

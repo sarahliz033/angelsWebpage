@@ -17,6 +17,7 @@
 //use PHPUnit\Framework\TestCase;
 include_once(dirname(__FILE__).'/./database/dbEvents.php');
 include_once(dirname(__FILE__).'/./domain/Event.php');
+
 /*
 include_once(dirname(__FILE__).'/./database/dbPersons.php');
 include_once(dirname(__FILE__).'/./domain/Person.php');
@@ -29,9 +30,8 @@ echo("1");
       	// add two people to the database
         $m = new Event("2","testevent","This is a test","Bosnia","Greater Bosnia","Bosnovia","6969");
         echo("2");
-add_event($m);
-        //        $this->assertTrue(add_event($m));
-echo("3\n");		
+		(add_event($m));
+echo("3");		
 /*		$m2 = new Person("Fred","Wilson", "portland","14 Boyer Ave", "Portland", "ME", 04503,
 		5093456789, "home",5098889999,"cell","alfred@whitman.edu","volunteer","","","active", 
 		"McDonalds","manager","","year","a motivation2","First Aid", "",
@@ -48,11 +48,8 @@ echo("3\n");
 		$this->assertEquals($p->get_state() == ("Greater Bosnia"));
 		$this->assertTrue($p->get_city() == "Bosnovia");
 		$this->assertTrue($p->get_zip() == "6969");
-        */
-        echo("poop\n");
+		*/
         echo($p->get_name());
-
-		
 /*		$p2 = retrieve_person("Fred5093456789");
 		$this->assertTrue($p2!==false);
 		$this->assertTrue($p2->get_status() == "active");

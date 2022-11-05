@@ -12,7 +12,7 @@ class Event{
     private $city;
     private $zip;
 
-    function __construct($f, $n, $d, $a, $s, $c, $z){
+  public  function __construct($f, $n, $d, $a, $s, $c, $z){
         $this->id = $f;
         $this->name = $n;
         $this->description = $d;

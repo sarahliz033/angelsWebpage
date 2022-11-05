@@ -16,14 +16,18 @@
  */
 
 include_once(dirname(__FILE__).'/../domain/Event.php');
+include_once('dbinfo.php');
 
-
+echo ("COCK AND BALLS \n");
 function add_Event($event) {
+    echo("fitness grand pacer\n");
     if (!$event instanceof Event)
         die("Error: add_event type mismatch");
     $con=connect();
+    echo("Im in!\n");
     $query = "SELECT * FROM dbEvents WHERE id = '" . $event->get_id() . "'";
     $result = mysqli_query($con,$query);
+    echo("HUE BARRY\n");
     //if there's no entry for this id, add it
     if ($result == null || mysqli_num_rows($result) == 0) {
         mysqli_query($con,'INSERT INTO dbEvents VALUES("' .
@@ -34,12 +38,15 @@ function add_Event($event) {
                 $event->get_state() . '","' .
                 $event->get_city() . '","' .
                 $event->get_zip() .
-                '");');							
+                '");');					
+        echo("We got the goods\n");        
         mysqli_close($con);
         return true;
     }
     mysqli_close($con);
+    echo("badabing\n");
     return false;
+
 }
 
 /*

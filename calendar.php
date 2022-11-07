@@ -17,9 +17,6 @@ session_cache_expire(30);
 ?>
 <html>
     <head>
-        <title>
-            Calendar viewing
-        </title>
         <link rel="stylesheet" href="styles.css" type="text/css" />
         <link rel="stylesheet" href="calendar.css" type="text/css" />
     </head>

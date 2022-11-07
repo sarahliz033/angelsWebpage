@@ -8,18 +8,11 @@
  * 
  */
 ?>
-<!-- Begin Header -->
-<style type="text/css">
-    h1 {padding-left: 0px; padding-right:165px;}
-</style>
-<div id="header">
-<!--<br><br><img src="images/rmhHeader.gif" align="center"><br>
-<h1><br><br>Angels on Wheels <br></h1>-->
 
 </div>
 
 <div align="center" id="navigationLinks">
-
+    <br><br><img src="angels-on-wheels.jpeg" align="center" style="width= 300px"><br>
     <?PHP
     //Log-in security
     //If they aren't logged in, display our log-in form.
@@ -74,7 +67,6 @@
         	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         }
         else {
-        	echo " <br><b>"."Angels on Wheels"."</b> ";
 	        if ($_SESSION['access_level'] >= 1) {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');

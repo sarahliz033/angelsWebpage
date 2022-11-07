@@ -8,18 +8,11 @@
  * 
  */
 ?>
-<!-- Begin Header -->
-<style type="text/css">
-    h1 {padding-left: 0px; padding-right:165px;}
-</style>
-<div id="header">
-<!--<br><br><img src="images/rmhHeader.gif" align="center"><br>
-<h1><br><br>Homebase <br></h1>-->
 
 </div>
 
 <div align="center" id="navigationLinks">
-
+    <br><br><img src="angels-on-wheels.jpeg" align="center" style="width= 300px"><br>
     <?PHP
     //Log-in security
     //If they aren't logged in, display our log-in form.
@@ -74,13 +67,11 @@
         	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         }
         else {
-        	echo " <br><b>"."Homebase"."</b> ";
 	        if ($_SESSION['access_level'] >= 1) {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
-	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
-	            echo(' <a href="' . $path . 'calendar.php?venue=bangor'.''.'">Bangor</a>');
+	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=bangor'.''.'">events</a>');
 	        }
 	        if ($_SESSION['access_level'] >= 2) {
 	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=portland'."".'">Portland, </a>');

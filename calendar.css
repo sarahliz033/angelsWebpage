@@ -7,40 +7,40 @@ table#weeknav {
 table#weeknav td{
 	border-width:0px 0px 0px 0px;
 	font-size:14px;
-//	font-weight:bold;
+	font-weight:bold;
 }
 table#shiftbox {
-	//border-collapse:collapse; font-family:verdana, arial, sans-serif;
-	border: solid 0px #264576 !important;
+	border-collapse:collapse; font-family:verdana, arial, sans-serif;
+	border: solid 0px #6e0d8b !important;
 	width:100%;
 }
 table#shiftbox td{
 	padding:0px;
-	border: solid 0px #264576 !important;
+	border: solid 0px #6e0d8b !important;
 }
 .persons {
 	height:55px;
-	//border-style: none;
+	border-style: none;
 }
 .notes {
 	height:20px;
-	//border-style: none;
+	border-style: none;
 }
 
 table#calendar {
 	background-color:white;
-//	width:950px;
+	width:950px;
 }
 table#calendar td{
 	padding:0px;
-	border: solid 1px #264576;
+	border: solid 1px #6e0d8b;
 }
 .hour{
 	width:90px;
 	height:30px;
 	border: 0px;
 	vertical-align:top;
-	background-color:lightblue;
+	background-color:rgb(209, 173, 230);
 }
 .masterhour{
 	width:90px;
@@ -73,7 +73,7 @@ table#calendar td{
 	font-weight:bold;
 	height:25px;
 	font-size:18px;
-	background-color:lightblue;
+	background-color:rgb(209, 173, 230);
 }
 
 a#weeknavlink {
@@ -98,7 +98,7 @@ background-color:lightgray;
 }
 
 textarea {
-	//border: 1px solid #000000;
+	border: 1px solid #000000;
 }
 textarea#mgr_notes{
 width: 96%;
@@ -109,6 +109,8 @@ width: 96%;
 height: 25px;
 }
 table#view_scl {
+	width: 96%;
+	height: 25px;
 }
 
 p#shift {padding-left: 3px; padding-right:3px;}

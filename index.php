@@ -11,7 +11,7 @@ session_cache_expire(30);
 <html>
     <head>
         <title>
-            RMH Homebase
+            Angels on Wheels
         </title>
         <link rel="stylesheet" href="styles.css" type="text/css" />
         <style>
@@ -34,7 +34,7 @@ session_cache_expire(30);
             //    fix_all_birthdays();
                 if ($_SESSION['_id'] != "guest") {
                     $person = retrieve_person($_SESSION['_id']);
-                    echo "<p>Welcome, " . $person->get_first_name() . ", to Homebase!";
+                    echo "<p>Welcome, " . $person->get_first_name() . ", to Angels on Wheels!";
                 }
                 else 
                     echo "<p>Welcome!";

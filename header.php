@@ -79,7 +79,7 @@
 	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, 
 				        <a href="personEdit.php?id=' . 'new' . '">add, </a> <a href="viewScreenings.php?type=new">screenings</a>');
 	            echo(' | <a href="' . $path . 'reports.php?venue='.$_SESSION['venue'].'">reports</a>');
-	            echo(' | Events: <a href="' . $path . 'eventSearch.php?venue='.$_SESSION['venue'].'">Search</a>');
+	            echo(' | events: <a href="' . $path . 'eventSearch.php?venue='.$_SESSION['venue'].'">search</a>');
 	        }
 	        echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         }

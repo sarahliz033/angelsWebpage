@@ -58,7 +58,7 @@ if ($_SESSION['access_level'] == 0) {
 			})
 	</script>
     <?PHP 
-    	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
+    	$venues = array( 'bangor'=>"Angels on Wheels");       
         echo '<table><tr><td>Date: '. 
 	             '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
 	   	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
@@ -240,11 +240,7 @@ if ($_SESSION['access_level']==0)
                     '6-9' => '', 'night' => "night");
                 $sunshiftsbangor = array('9-12' => '9-5', '12-3' => '', '3-6' => '',
                     '6-9' => '5-9', 'night' => "");
-                if ($_SESSION['venue']=="portland") {
-                	$satshifts = $satshiftsportland;
-                	$sunshifts = $sunshiftsportland;
-                }
-                else {
+                if ($_SESSION['venue']=="bangor") {
                 	$satshifts = $satshiftsbangor;
                 	$sunshifts = $sunshiftsbangor;
                 }

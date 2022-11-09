@@ -61,7 +61,7 @@ include_once(dirname(__FILE__).'/...database/Event.php');
         }
         //This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
-		$venues = array("bangor"=>"RMH Bangor");
+		$venues = array("bangor"=>"RMH bangor");
         
         //they're logged in and session variables are set.
         if ($_SESSION['venue'] =="") { 

@@ -177,7 +177,7 @@ session_cache_expire(30);
                 }
 
                 function process_fill_vacancy($post, $msentry) {
-                	$venues = array("bangor"=>"RMH Bangor");
+                	$venues = array("angels"=>"Angels on Wheels");
                 	if (!array_key_exists('_submit_fill_vacancy', $post))
                         return false;
                     echo "<table align=\"center\"><tr><td align=\"center\" width=\"450\"><b>

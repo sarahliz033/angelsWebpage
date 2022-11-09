@@ -66,7 +66,7 @@ session_cache_expire(30);
 			
 			<li>If all else fails, or if you do not remember your password,
 				please contact the <a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
-        		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>.
+        		or the <a href="mailto:allen@npfi.org"><i>bangor House Manager</i></a>.
 		
 		</ul>
 		<p>

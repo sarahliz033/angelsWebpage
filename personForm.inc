@@ -201,10 +201,10 @@ $types = array('volunteer' => 'House Volunteer', 'weekendmgr' => 'Weekend Manage
 $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations of the House, such as
 				answering phones, assisting families, giving tours, cleaning rooms and common areas, and washing linens.<p>', 
 		'weekendmgr' => ' -- Serves as main point of contact during day and overnight hours. Shifts are 
-						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (Bangor) or 2pm (Portland). Duties include
+						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (bangor) or 2pm (Portland). Duties include
 						preparing rooms for guests, assisting families, responding to emergencies, and coordinating shift volunteers.', 
 		'sub' => ' -- available on an as-needed basis to fill in (sub) for an open House Volunteer or Weekend Manager shift.',
-		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people Bangor and 
+		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people bangor and 
 						20-25 people Portland). Groups should be limited to 6-8 people.', 
 		'events' => ' -- Helps with special projects and fundraising events that take place occasionally during the year.', 
 		'manager' => ' -- This is a restricted level of Homebase access for House staff and experienced volunteers.');

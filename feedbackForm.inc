@@ -31,7 +31,8 @@ if ($_SESSION['access_level'] >= 0)
 	</script>
     <?PHP 
     	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
-        echo '<table><tr><td>Date: '. 
+        echo "<table><tr><td>Where did you volunteer?</td></tr>";
+        echo '<tr><td>Date: '. 
 	             '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
 	   	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
 	   	foreach ($venues as $venue=>$venuename) {
@@ -50,15 +51,13 @@ if ($_SESSION['access_level'] >= 0)
     ?>  &nbsp;&nbsp;&nbsp;&nbsp;  Last Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="last_name" tabindex="2">
 </select>
 <?php     
-        $phonetypes = array("home", "cell", "work");
-        if ($person->get_first_name()=="new") {
-        	echo '<p>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>: ';
-        	echo '<input type="text" name="phone1" MAXLENGTH=12 tabindex="7" value="'.phone_edit($person->get_phone1()).'">';
-        	foreach ($phonetypes as $pvalue)
-        		echo '<input type="radio" name="phone1type" value="' . $pvalue.'"'.($person->get_phone1type()==$pvalue?' checked':'').'>'.$pvalue.' ';
-        }
-        else echo '<p>Primary Phone: '.phone_edit($person->get_phone1());
-        echo '<p>Email address: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
+    $phonetypes = array("home", "cell", "work");
+    echo '<p>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>: ';
+    echo '<input type="text" name="phone1" MAXLENGTH=12 tabindex="7" value="'.'">';
+    foreach ($phonetypes as $pvalue)
+        echo '<input type="radio" name="phone1type" value="' . $pvalue.'"'.($person->get_phone1type()==$pvalue?' checked':'').'>'.$pvalue.' ';
+    echo '<p>Email address: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
+    echo '<p>Feedback<span style="font-size:x-small;color:FF0000">*</span>`: '. '<textarea></textarea>';
 ?>
 
 <script src="lib/jquery-1.9.1.js"></script>

@@ -26,7 +26,7 @@ function create_dbMasterSchedule() {
         echo mysqli_error($con) . " - Error creating dbMasterSchedule table.\n";
         return false;
     }
-    $venues = array("portland","bangor");
+    $venues = array("bangor");
     $days = array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
     $weeks = array("1st", "2nd", "3rd", "4th", "5th", "odd", "even");
     mysqli_close($con);

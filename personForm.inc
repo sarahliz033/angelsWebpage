@@ -58,7 +58,7 @@ if ($_SESSION['access_level'] == 0) {
 			})
 	</script>
     <?PHP 
-    	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
+    	$venues = array( 'bangor'=>"Angels on Wheels");       
         echo '<table><tr><td>Date: '. 
 	             '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
 	   	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
@@ -201,10 +201,10 @@ $types = array('volunteer' => 'House Volunteer', 'weekendmgr' => 'Weekend Manage
 $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations of the House, such as
 				answering phones, assisting families, giving tours, cleaning rooms and common areas, and washing linens.<p>', 
 		'weekendmgr' => ' -- Serves as main point of contact during day and overnight hours. Shifts are 
-						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (Bangor) or 2pm (Portland). Duties include
+						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (bangor) or 2pm (Portland). Duties include
 						preparing rooms for guests, assisting families, responding to emergencies, and coordinating shift volunteers.', 
 		'sub' => ' -- available on an as-needed basis to fill in (sub) for an open House Volunteer or Weekend Manager shift.',
-		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people Bangor and 
+		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people bangor and 
 						20-25 people Portland). Groups should be limited to 6-8 people.', 
 		'events' => ' -- Helps with special projects and fundraising events that take place occasionally during the year.', 
 		'manager' => ' -- This is a restricted level of Homebase access for House staff and experienced volunteers.');
@@ -240,11 +240,7 @@ if ($_SESSION['access_level']==0)
                     '6-9' => '', 'night' => "night");
                 $sunshiftsbangor = array('9-12' => '9-5', '12-3' => '', '3-6' => '',
                     '6-9' => '5-9', 'night' => "");
-                if ($_SESSION['venue']=="portland") {
-                	$satshifts = $satshiftsportland;
-                	$sunshifts = $sunshiftsportland;
-                }
-                else {
+                if ($_SESSION['venue']=="bangor") {
                 	$satshifts = $satshiftsbangor;
                 	$sunshifts = $sunshiftsbangor;
                 }

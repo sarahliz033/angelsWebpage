@@ -73,7 +73,7 @@ session_cache_expire(30);
 	</ol>
 	<p>
 		If these help pages don't answer your questions, please contact the <a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
-        		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>.
+        		or the <a href="mailto:allen@npfi.org"><i>bangor House Manager</i></a>.
 	</p>
 </body>
 </html>

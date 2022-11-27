@@ -62,7 +62,7 @@ include_once(dirname(__FILE__).'/...database/Event.php');
         }
         //This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
-		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
+		$venues = array("bangor"=>"RMH bangor");
         
         //they're logged in and session variables are set.
         if ($_SESSION['venue'] =="") { 
@@ -77,8 +77,7 @@ include_once(dirname(__FILE__).'/...database/Event.php');
 	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=bangor'.''.'">events</a>');
 	        }
 	        if ($_SESSION['access_level'] >= 2) {
-	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=portland'."".'">Portland, </a>');
-	            echo('<a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Bangor</a>');
+	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Angels on Wheels</a>');
 	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, 
 				        <a href="personEdit.php?id=' . 'new' . '">add, </a> <a href="viewScreenings.php?type=new">screenings</a>');
 	            echo(' | <a href="' . $path . 'reports.php?venue='.$_SESSION['venue'].'">reports</a>');

@@ -60,7 +60,7 @@ function show_master_schedule($venue) {
 	$wkndgroups = array("1st", "2nd", "3rd", "4th", "5th");
 	$groups = array("odd", "even");
     $shifts = array("9-12","12-3","3-6","6-9","night");
-	$venues = array("portland"=>"Portland House","bangor"=>"Bangor House");
+	$venues = array("portland"=>"Portland House","bangor"=>"bangor House");
     $days = array("Mon" => "Monday", "Tue" => "Tuesday", "Wed" => "Wednesday",
                     "Thu" => "Thursday", "Fri" => "Friday");
     

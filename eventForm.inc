@@ -18,35 +18,37 @@ if ($_SESSION['access_level'] == 0) {
     echo('Please provide as much information as you can. ' . 
        '<br>When finished, hit <b>Submit</b> at the bottom of this page, and then <b>logout</b>.');
 } else if ($_SESSION['access_level'] == 1)
-    if ($_SESSION['_id'] != $person->get_id()) {
-        echo("<p id=\"error\">You do not have sufficient permissions to edit this user.</p>");
+    if ($_SESSION['_id'] != $event->get_id()) {
+        echo("<p id=\"error\">You do not have sufficient permissions to edit this event.</p>");
         include('footer.inc');
         echo('</div></div></body></html>');
         die();
     } else {
-        echo '<p><strong>Personnel Edit Form</strong>';
-        echo(' Here you can edit your own information in the database.' .
+        echo '<p><strong>Event Edit Form</strong>';
+        echo(' Here you can edit an Event information in the database.' .
         '<br>When finished, hit <b>Submit</b> at the bottom of this page.');
     } else if ($_SESSION['access_level'] == 2)
 	    if ($id == 'new') {
-	        echo('<p><strong>Volunteer Service Application</strong><br />');
-	        echo('Adding a new volunteer to the database. ' .
+	        echo('<p><strong>New Event Submission</strong><br />');
+	        echo('Adding a new event to the database. ' .
 	        '<br>When finished, hit <b>Submit</b> at the bottom of this page.');
 	    } else {
 	        echo '<p><strong>Personnel Edit Form</strong>'.
-	        		'&nbsp;&nbsp;&nbsp;&nbsp;(View <strong><a href="volunteerLog.php?id='.$person->get_id().'">Log Sheet</a></strong>)<br>';
+	        		'&nbsp;&nbsp;&nbsp;&nbsp;(View <strong><a href="volunteerLog.php?id='.$event->get_id().'">Log Sheet</a></strong>)<br>';
 	        echo('Here you can edit, delete, or reset the password for a person in the database.' .
 	        '<br>When finished, hit <b>Submit</b> at the bottom of this page.');
 	    } 
 	    else {
-		    echo("<p id=\"error\">You do not have sufficient permissions to add a new person to the database.</p>");
+		    echo("<p id=\"error\">You do not have sufficient permissions to add a new event to the database.</p>");
 		    include('footer.inc');
 		    echo('</div></div></body></html>');
 		    die();
 	    }
     echo '<br> (<span style="font-size:x-small;color:FF0000">*</span> denotes required information).';
 ?>
+
 <form method="POST">
+<!--
     <input type="hidden" name="old_id" value=<?PHP echo("\"" . $id . "\""); ?>>
     <input type="hidden" name="old_pass" value=<?PHP echo("\"" . $person->get_password() . "\""); ?>>
     <input type="hidden" name="_form_submit" value="1">
@@ -56,9 +58,10 @@ if ($_SESSION['access_level'] == 0) {
 				$( "#start_date" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true,yearRange: "1920:+nn"});
 				$( "#screening_status" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true,yearRange: "1920:+nn"});
 			})
-	</script>
-    <?PHP 
-    	$venues = array( 'bangor'=>"Angels on Wheels");       
+	</script> -->
+    <?PHP
+   /* 
+    	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
         echo '<table><tr><td>Date: '. 
 	             '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
 	   	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
@@ -66,18 +69,18 @@ if ($_SESSION['access_level'] == 0) {
 	   		echo ('<td><input type="radio" name="location" value="' .$venue.'"'. ($person->get_venue()==$venue?' checked':'').'>');
 	    	echo "</td><td>".$venuename."</td>";
 	   	}
-	   	echo "</tr></table><br>"; 
+	   	echo "</tr></table><br>"; */
     ?>
     <fieldset>
         <legend>Personal information:</legend>
     <?php
-        if ($person->get_first_name()=="new")
-        	echo '<p>First Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="first_name" tabindex="1" value="'.$person->get_first_name().'">';
+        if ($event->get_name()=="new")
+        	echo '<p>Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="first_name" tabindex="1" value="'.$event->get_name().'">';
         else 
-        	echo '<p>First Name: '.$person->get_first_name();
-    ?>  &nbsp;&nbsp;&nbsp;&nbsp;  Last Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="last_name" tabindex="2" value="<?PHP echo($person->get_last_name()) ?>">
-        <p>Address<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="address" tabindex="3" size=40 value="<?PHP echo($person->get_address()) ?>">
-        <p>City<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="city" tabindex="4" value="<?PHP echo($person->get_city()) ?>">
+        	echo '<p>Name: '.$event->get_name();
+    ?>  &nbsp;&nbsp;&nbsp;&nbsp; 
+        <p>Address<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="address" tabindex="3" size=40 value="<?PHP echo($event->get_address()) ?>">
+        <p>City<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="city" tabindex="4" value="<?PHP echo($event->get_city()) ?>">
         State, Zip<span style="font-size:x-small;color:FF0000">*</span>:
             <select name="state" tabindex="5">
 <?PHP
@@ -87,18 +90,20 @@ $states = array("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA"
     "WV", "WI", "WY");
 foreach ($states as $st) {
     echo "<option value='" . $st . "' ";
-    if ($person->get_state() == $st)
+    if ($event->get_state() == $st) // GET STATE? >-< uwuuww
         echo("SELECTED");
-    else if ($id == "new" && $st == "ME")
+    else if ($id == "new" && $st == "VA")
         echo("SELECTED");
     echo ">" . $st . "</option>";
 }
 ?>
 </select>,
-<input type="text" name="zip" size="5" tabindex="6" value="<?PHP echo($person->get_zip()) ?>">
-<?php     
-        $phonetypes = array("home", "cell", "work");
-        if ($person->get_first_name()=="new") {
+<input type="text" name="zip" size="5" tabindex="6" value="<?PHP echo($event->get_zip()) ?>">
+
+<?php
+/*
+        //$phonetypes = array("home", "cell", "work");
+        if ($event->get_name()=="new") {
         	echo '<p>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>: ';
         	echo '<input type="text" name="phone1" MAXLENGTH=12 tabindex="7" value="'.phone_edit($person->get_phone1()).'">';
         	foreach ($phonetypes as $pvalue)
@@ -114,13 +119,15 @@ foreach ($states as $st) {
         if ($id=='new')
         	echo ' (Applicants younger than 18 should contact RMH for a separate application)';
         echo '<p>Email address: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
+*/
 ?>
+
 <script src="lib/jquery-1.9.1.js"></script>
 <script src="lib/jquery-ui.js"></script>
 </fieldset>
 
 <?php 		  
-if ($_SESSION['access_level']==2) {
+/*if ($_SESSION['access_level']==2) {
 	echo('<p>Manager Notes:<br />');
 	echo('<textarea name="notes" rows="2" cols="75">');
 	echo($person->get_notes().'</textarea>');
@@ -201,10 +208,10 @@ $types = array('volunteer' => 'House Volunteer', 'weekendmgr' => 'Weekend Manage
 $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations of the House, such as
 				answering phones, assisting families, giving tours, cleaning rooms and common areas, and washing linens.<p>', 
 		'weekendmgr' => ' -- Serves as main point of contact during day and overnight hours. Shifts are 
-						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (bangor) or 2pm (Portland). Duties include
+						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (Bangor) or 2pm (Portland). Duties include
 						preparing rooms for guests, assisting families, responding to emergencies, and coordinating shift volunteers.', 
 		'sub' => ' -- available on an as-needed basis to fill in (sub) for an open House Volunteer or Weekend Manager shift.',
-		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people bangor and 
+		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people Bangor and 
 						20-25 people Portland). Groups should be limited to 6-8 people.', 
 		'events' => ' -- Helps with special projects and fundraising events that take place occasionally during the year.', 
 		'manager' => ' -- This is a restricted level of Homebase access for House staff and experienced volunteers.');
@@ -223,13 +230,17 @@ foreach ($types as $key => $value) {
 
 if ($_SESSION['access_level']==0)
 	echo '<p>House volunteer shifts are three hours and regularly-scheduled shifts can occur weekly, bi-weekly, 
-        or monthly (for weekend shifts). Volunteers may also work flex shifts, filling in as their schedule allows.';
+    or monthly (for weekend shifts). Volunteers may also work flex shifts, filling in as their schedule allows.';
+*/
 ?>
-
+<!--
     <fieldset id='availability'>
         <legend>Availability:<span style="font-size:x-small;color:FF0000">*</span>  </legend>
+        
         <span class="bigTable">
-                <?PHP
+ -->
+                <?PHP 
+                /*
                 $shifts = array('9-12' => '9-12', '12-3' => '12-3', '3-6' => '3-6',
                     '6-9' => '6-9', 'night' => "night");
                 $satshiftsportland = array('9-12'=>'10-1', '12-3' => '1-4', '3-6' => '',
@@ -240,10 +251,15 @@ if ($_SESSION['access_level']==0)
                     '6-9' => '', 'night' => "night");
                 $sunshiftsbangor = array('9-12' => '9-5', '12-3' => '', '3-6' => '',
                     '6-9' => '5-9', 'night' => "");
-                if ($_SESSION['venue']=="bangor") {
+                if ($_SESSION['venue']=="portland") {
+                	$satshifts = $satshiftsportland;
+                	$sunshifts = $sunshiftsportland;
+                }
+                else {
                 	$satshifts = $satshiftsbangor;
                 	$sunshifts = $sunshiftsbangor;
                 }
+                
                 $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
                 echo "<table>";
     			echo "<tr><td>Monday&nbsp;&nbsp;</td><td>Tuesday&nbsp;&nbsp;</td><td>Wednesday&nbsp;&nbsp;</td>".
@@ -268,11 +284,13 @@ if ($_SESSION['access_level']==0)
        				echo ('</tr>');
     			}
    		 		echo "</table><p>";
+                */
     			?>
-        </span>
-    </fieldset>
+<!--        </span>
+    </fieldset> -->
     <p>
         <?PHP
+        /*
         if ($_SESSION['access_level']==2 && $person->get_status() == "applicant") {
             echo "<fieldset>";
             echo "<legend>Applicants only: </legend>";
@@ -315,12 +333,13 @@ if ($_SESSION['access_level']==0)
                 }
 			}    
             echo "</fieldset>";
-        }
+        } 
         
         echo('<input type="hidden" name="schedule" value="' . implode(',', $person->get_schedule()) . '">');
         echo('<input type="hidden" name="hours" value="' . implode(',', $person->get_hours()) . '">');
         echo('<input type="hidden" name="password" value="' . $person->get_password() . ')">');
-        echo('<input type="hidden" name="_submit_check" value="1"><p>');
+        echo('<input type="hidden" name="_submit_check" value="1"><p>'); 
+        */
         if ($_SESSION['access_level'] == 0)
             echo('By hitting <input type="submit" value="Submit" name="Submit Edits">, I understand the importance of this volunteer 
             		commitment and have answered the application questions honestly and to the best of my knowledge.<br /><br />');
@@ -329,7 +348,7 @@ if ($_SESSION['access_level']==0)
         if ($id != 'new' && $_SESSION['access_level'] >= 2) {
             echo ( 
             'Hit <input type="submit" value="Delete" name="deleteMe"> to delete this entry. <br />' .
-            'Hit <input type="submit" value="Reset" name="reset_pass"> to reset this person\'s password.</p>');
+//            'Hit <input type="submit" value="Reset" name="reset_pass"> to reset this person\'s password.</p>');
         }
         ?>
 </form>

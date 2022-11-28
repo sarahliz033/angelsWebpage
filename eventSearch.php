@@ -1,72 +1,123 @@
 <?php
 /*
- * Copyright 2013 by Jerrick Hoang, Ivy Xing, Sam Roberts, James Cook, 
- * Johnny Coster, Judy Yang, Jackson Moniaga, Oliver Radwan, 
- * Maxwell Palmer, Nolan McNair, Taylor Talmage, and Allen Tucker. 
- * This program is part of RMH Homebase, which is free software.  It comes with 
- * absolutely no warranty. You can redistribute and/or modify it under the terms 
- * of the GNU General Public License as published by the Free Software Foundation
- * (see <http://www.gnu.org/licenses/ for more information).
- * 
+ * Copyright 2015 by Allen Tucker. This program is part of RMHP-Homebase, which is free 
+ * software.  It comes with absolutely no warranty. You can redistribute and/or 
+ * modify it under the terms of the GNU General Public License as published by the 
+ * Free Software Foundation (see <http://www.gnu.org/licenses/ for more information).
+ */
+/* 
+ * Modified by Xun Wang on Feb 25, 2015
  */
 
-/*
- * Modified March 2012
- * @Author Taylor and Allen
- */
-//use PHPUnit\Framework\TestCase;
-include_once(dirname(__FILE__).'/./database/dbEvents.php');
-include_once(dirname(__FILE__).'/./domain/Event.php');
-
-/*
-include_once(dirname(__FILE__).'/./database/dbPersons.php');
-include_once(dirname(__FILE__).'/./domain/Person.php');
-*/
-echo("DEEZNUTZ\n");
-echo("GOTHEEM\n");
-
-echo("1");		
-//      function testdbEvents() {
-      	// add two people to the database
-        $m = new Event("2","testevent","This is a test","Bosnia","Greater Bosnia","Bosnovia","6969");
-        echo("2");
-		(add_event($m));
-echo("3");		
-/*		$m2 = new Person("Fred","Wilson", "portland","14 Boyer Ave", "Portland", "ME", 04503,
-		5093456789, "home",5098889999,"cell","alfred@whitman.edu","volunteer","","","active", 
-		"McDonalds","manager","","year","a motivation2","First Aid", "",
-		"Wed:9-12:portland,Sun:afternoon:portland","","15-02-27:1730-2100:portland:3.5","91-09-25","07-04-14","other","Some notes",""); */
-//		$this->assertTrue(add_person($m2));
-
-		// retrieve the person and test the fields
-		$p = retrieve_event("2");
-        /*
-		$this->assertTrue($p!==false);
-		$this->assertTrue($p->get_name() == "testevent");
-		$this->assertTrue($p->get_description() == "This is a test");
-		$this->assertEquals($p->get_address() == ("Bosnia"));
-		$this->assertEquals($p->get_state() == ("Greater Bosnia"));
-		$this->assertTrue($p->get_city() == "Bosnovia");
-		$this->assertTrue($p->get_zip() == "6969");
-		*/
-        echo($p->get_name());
-/*		$p2 = retrieve_person("Fred5093456789");
-		$this->assertTrue($p2!==false);
-		$this->assertTrue($p2->get_status() == "active");
-		$this->assertTrue($p2->get_email() == "alfred@whitman.edu");
-		$this->assertEquals($p2->get_type(), array("volunteer"));
-		$this->assertEquals($p2->get_hours(), array("15-02-27:1730-2100:portland:3.5"));
-		$this->assertTrue($p2->get_birthday() == "91-09-25");
-		
-		// remove the person
-		//$this->assertTrue(remove_event("2")); Removing Event
-		//$this->assertTrue(remove_person("Fred5093456789"));
-		
-		echo("testdbEvents complete\n");
-
-      }
-*/
-echo("JIMMY'S MOM\n");
-
-
+session_start();
+session_cache_expire(30);
 ?>
+<html>
+    <head>
+        <title>
+            Search for Events
+        </title>
+        <link rel="stylesheet" href="styles.css" type="text/css" />
+		<link rel="stylesheet" href="lib/jquery-ui.css" />
+		
+    </head>
+    <body>
+        <div id="container">
+            <?PHP include('header.php'); ?>
+            <div id="content">
+                <?PHP
+                // display the search form
+                $area = $_GET['area'];
+                echo('<form method="post">');
+                echo('<p><strong>Search for events:</strong>');
+                //echo '<p>Type:<select name="s_type">' ;
+                //echo '<option value="" SELECTED></option>' ;
+                //foreach ($types as $type => $typename)
+                //	echo '<option value="'.$type.'">'.$typename.'</option>';
+                
+                //echo '</select>';
+                //echo('&nbsp;&nbsp;Status:<select name="s_status">' .
+                //'<option value="" SELECTED></option>' . '<option value="applicant">Applicant</option>' . '<option value="active">Active</option>' .
+                //'<option value="LOA">On Leave</option>' . '<option value="former">Former</option>' .
+                //'</select>');
+                echo '<p>Name (type a few letters): ';
+                echo '<input type="text" name="s_name">';
+/*
+                echo '<fieldset>
+						<legend>Availability: </legend>
+							<table><tr>
+								<td>Day (of week)</td>
+								<td>Shift</td>
+								</tr>';
+                echo "<tr>";
+                echo "<td>";
+                $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
+                echo '<select name="s_day">' . '<option value=""></option>';
+                foreach ($days as $day) {
+                    echo '<option value="' . $day . '">' . $day . '</option>';
+                }
+                echo '</select>';
+                echo "</td><td>";
+                $shifts = array('9-12' => '9am-12pm', '12-3' => '12pm-3pm', '3-6' => '3pm-6pm',
+                    '6-9' => '6pm-9pm', 'night' => "Overnight");
+                echo '<select name="s_shift">' . '<option value=""></option>';
+                foreach ($shifts as $shiftno => $shiftname) {
+                    echo '<option value="' . $shiftno . '">' . $shiftname . '</option>';
+                }
+                echo '</select>';
+                echo "</tr>";
+                echo '</table></fieldset>';
+*/
+                echo('<p><input type="submit" name="Search" value="Search">');
+                echo('</form></p>');
+                
+                // if user hit "Search"  button, query the database and display the results
+                if ($_POST['Search']) {
+                    //$type = $_POST['s_type'];
+                    //$status = $_POST['s_status'];
+                    $name = trim(str_replace('\'', '&#39;', htmlentities($_POST['s_name'])));
+                    // now go after the volunteers that fit the search criteria
+                    include_once('database/dbEvents.php');
+                    include_once('domain/Event.php');
+                    include_once('dbinfo.php');
+                    //$result = getonlythose_dbPersons($type, $status, $name, $_POST['s_day'], $_POST['s_shift'], $_SESSION['venue']); //added s_venue
+                    $result = retrieve_events_by_name($name); //retrieve events
+                    echo '<p><strong>Search Results:</strong> <p>Found ' . sizeof($result) . ' ' . $status . ' ';
+                    /*if ($type != "")
+                        echo $type . "s";
+                    else
+                        echo "persons";*/
+                    if ($name != "")
+                        echo ' with name like "' . $name . '"';
+                   // $availability = $_POST['s_day'] ." ". $_POST['s_shift'] ; //added s_venue 
+                    
+				    if (sizeof($result) > 0) {
+				       echo ' (select one for more info).';
+				       echo '<div id="target" style="overflow: scroll; width: variable; height: 400px;">';
+				       echo '<p><table> <tr><td>Name</td><td>Description</td><td>Address</td><td>City</td><td>State</td>
+				                            <td>Zip</td></tr>';
+				       foreach ($result as $vol) {
+				          echo "<tr><td>" . 
+		
+				               $vol->get_name() . "</td><td>" .
+				               $vol->get_description() . "</td><td>" .
+				               $vol->get_address() . "</td><td>" .
+				               $vol->get_city() . "</td><td>" .
+				               $vol->get_state() . "</td><td>" .
+				               $vol->get_zip() . "</td>";
+				          
+				          echo "</a></tr>";
+				       }
+				       echo '</table>';
+				       echo '</div>';   
+				    }
+				               
+                }
+                ?>
+                <!-- below is the footer that we're using currently-->
+                </div>
+        </div>
+        <?PHP include('footer.inc'); ?>
+    </body>
+</html>
+

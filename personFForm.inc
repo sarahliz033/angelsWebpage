@@ -12,9 +12,9 @@
  * 	@author Oliver Radwan, Xun Wang and Allen Tucker
  * 	@version 9/1/2008, revised 4/1/2012, revised 3/11/2015
  */
-
+//echo("Chimichanga");
 if ($_SESSION['access_level'] == 0) {
-    echo('<p><strong>Volunteer Service Application</strong><br />');
+    echo('<p><strong>Event Edit/Adding Form</strong><br />');
     echo('Please provide as much information as you can. ' . 
        '<br>When finished, hit <b>Submit</b> at the bottom of this page, and then <b>logout</b>.');
 } else if ($_SESSION['access_level'] == 1)
@@ -25,12 +25,12 @@ if ($_SESSION['access_level'] == 0) {
         die();
     } else {
         echo '<p><strong>Personnel Edit Form</strong>';
-        echo(' Here you can edit your own information in the database.' .
+                echo(' Here you can edit your own information in the database.' .
         '<br>When finished, hit <b>Submit</b> at the bottom of this page.');
     } else if ($_SESSION['access_level'] == 2)
 	    if ($id == 'new') {
-	        echo('<p><strong>Volunteer Service Application</strong><br />');
-	        echo('Adding a new volunteer to the database. ' .
+	        echo('<p><strong>Event Edit/Adding Form</strong><br />');
+	        echo('Adding/Editing an Event to the database. ' .
 	        '<br>When finished, hit <b>Submit</b> at the bottom of this page.');
 	    } else {
 	        echo '<p><strong>Personnel Edit Form</strong>'.
@@ -58,24 +58,24 @@ if ($_SESSION['access_level'] == 0) {
 			})
 	</script>
     <?PHP 
-    	$venues = array( 'bangor'=>"Angels on Wheels");       
+    	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
         echo '<table><tr><td>Date: '. 
 	             '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
-	   	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
-	   	foreach ($venues as $venue=>$venuename) {
-	   		echo ('<td><input type="radio" name="location" value="' .$venue.'"'. ($person->get_venue()==$venue?' checked':'').'>');
-	    	echo "</td><td>".$venuename."</td>";
-	   	}
+	   //	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
+	   //	foreach ($venues as $venue=>$venuename) {
+	   //		echo ('<td><input type="radio" name="location" value="' .$venue.'"'. ($person->get_venue()==$venue?' checked':'').'>');
+	   // 	echo "</td><td>".$venuename."</td>";
+	   //	}
 	   	echo "</tr></table><br>"; 
     ?>
     <fieldset>
-        <legend>Personal information:</legend>
+        <legend>Event information:</legend>
     <?php
         if ($person->get_first_name()=="new")
-        	echo '<p>First Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="first_name" tabindex="1" value="'.$person->get_first_name().'">';
+        	echo '<p>Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="first_name" tabindex="1" value="'.$person->get_first_name().'">';
         else 
         	echo '<p>First Name: '.$person->get_first_name();
-    ?>  &nbsp;&nbsp;&nbsp;&nbsp;  Last Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="last_name" tabindex="2" value="<?PHP echo($person->get_last_name()) ?>">
+    ?>  &nbsp;&nbsp;&nbsp;&nbsp;  
         <p>Address<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="address" tabindex="3" size=40 value="<?PHP echo($person->get_address()) ?>">
         <p>City<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="city" tabindex="4" value="<?PHP echo($person->get_city()) ?>">
         State, Zip<span style="font-size:x-small;color:FF0000">*</span>:
@@ -98,22 +98,22 @@ foreach ($states as $st) {
 <input type="text" name="zip" size="5" tabindex="6" value="<?PHP echo($person->get_zip()) ?>">
 <?php     
         $phonetypes = array("home", "cell", "work");
-        if ($person->get_first_name()=="new") {
-        	echo '<p>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>: ';
-        	echo '<input type="text" name="phone1" MAXLENGTH=12 tabindex="7" value="'.phone_edit($person->get_phone1()).'">';
-        	foreach ($phonetypes as $pvalue)
-        		echo '<input type="radio" name="phone1type" value="'.$pvalue.'"'.($person->get_phone1type()==$pvalue?' checked':'').'>'.$pvalue.' ';
-        }
-        else echo '<p>Primary Phone: '.phone_edit($person->get_phone1());
-        echo '<p>Secondary Phone: ';
-        echo '<input type="text" name="phone2" MAXLENGTH=12 tabindex="8" value="'.phone_edit($person->get_phone2()).'">';
-        foreach ($phonetypes as $pvalue)
-        	echo '<input type="radio" name="phone2type" value="'.$pvalue.'"'.($person->get_phone2type()==$pvalue?" checked":"").'>'.$pvalue.' ';
+        //if ($person->get_first_name()=="new") {
+        	//echo '<p>Primary Phone<span style="font-size:x-small;color:FF0000">*</span>: ';
+        	//echo '<input type="text" name="phone1" MAXLENGTH=12 tabindex="7" value="'.phone_edit($person->get_phone1()).'">';
+        	//foreach ($phonetypes as $pvalue)
+        	//	echo '<input type="radio" name="phone1type" value="'.$pvalue.'"'.($person->get_phone1type()==$pvalue?' checked':'').'>'.$pvalue.' ';
+        //}
+        //else echo '<p>Primary Phone: '.phone_edit($person->get_phone1());
+        //echo '<p>Secondary Phone: ';
+        //echo '<input type="text" name="phone2" MAXLENGTH=12 tabindex="8" value="'.phone_edit($person->get_phone2()).'">';
+        //foreach ($phonetypes as $pvalue)
+        	//echo '<input type="radio" name="phone2type" value="'.$pvalue.'"'.($person->get_phone2type()==$pvalue?" checked":"").'>'.$pvalue.' ';
         
-        echo '<p>Birth date: '. '<input name="birthday" type="text" id="birthday" tabindex="9" value="'.$person->get_birthday().'">';
-        if ($id=='new')
-        	echo ' (Applicants younger than 18 should contact RMH for a separate application)';
-        echo '<p>Email address: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
+        //echo '<p>Birth date: '. '<input name="birthday" type="text" id="birthday" tabindex="9" value="'.$person->get_birthday().'">';
+        //if ($id=='new')
+        //	echo ' (Applicants younger than 18 should contact RMH for a separate application)';
+        //echo '<p>Email address: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
 ?>
 <script src="lib/jquery-1.9.1.js"></script>
 <script src="lib/jquery-ui.js"></script>
@@ -121,11 +121,11 @@ foreach ($states as $st) {
 
 <?php 		  
 if ($_SESSION['access_level']==2) {
-	echo('<p>Manager Notes:<br />');
+	echo('<p>Event Description:<br />');
 	echo('<textarea name="notes" rows="2" cols="75">');
-	echo($person->get_notes().'</textarea>');
+	echo($person->get_notes().'</textarea>'); // This needs to become $event->get_description();
 }
-
+/*
 echo '<fieldset> <legend>Employment:</legend>';
 echo '<p>Current Employer: <input type="text" name="employer" tabindex="1" size=30 value="'.$person->get_employer().'"> '.
 'Position: <input type="text" name="position" tabindex="2" size=30 value="'.$person->get_position().'">';
@@ -201,10 +201,10 @@ $types = array('volunteer' => 'House Volunteer', 'weekendmgr' => 'Weekend Manage
 $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations of the House, such as
 				answering phones, assisting families, giving tours, cleaning rooms and common areas, and washing linens.<p>', 
 		'weekendmgr' => ' -- Serves as main point of contact during day and overnight hours. Shifts are 
-						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (bangor) or 2pm (Portland). Duties include
+						generally Friday 5pm to Saturday 5pm and/or Saturday 5pm to Sunday noon (Bangor) or 2pm (Portland). Duties include
 						preparing rooms for guests, assisting families, responding to emergencies, and coordinating shift volunteers.', 
 		'sub' => ' -- available on an as-needed basis to fill in (sub) for an open House Volunteer or Weekend Manager shift.',
-		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people bangor and 
+		'mealprep' => ' -- Individual or group provides ingredients and prepares evening meal for families (approx. 15-20 people Bangor and 
 						20-25 people Portland). Groups should be limited to 6-8 people.', 
 		'events' => ' -- Helps with special projects and fundraising events that take place occasionally during the year.', 
 		'manager' => ' -- This is a restricted level of Homebase access for House staff and experienced volunteers.');
@@ -240,7 +240,11 @@ if ($_SESSION['access_level']==0)
                     '6-9' => '', 'night' => "night");
                 $sunshiftsbangor = array('9-12' => '9-5', '12-3' => '', '3-6' => '',
                     '6-9' => '5-9', 'night' => "");
-                if ($_SESSION['venue']=="bangor") {
+                if ($_SESSION['venue']=="portland") {
+                	$satshifts = $satshiftsportland;
+                	$sunshifts = $sunshiftsportland;
+                }
+                else {
                 	$satshifts = $satshiftsbangor;
                 	$sunshifts = $sunshiftsbangor;
                 }
@@ -316,7 +320,7 @@ if ($_SESSION['access_level']==0)
 			}    
             echo "</fieldset>";
         }
-        
+        */
         echo('<input type="hidden" name="schedule" value="' . implode(',', $person->get_schedule()) . '">');
         echo('<input type="hidden" name="hours" value="' . implode(',', $person->get_hours()) . '">');
         echo('<input type="hidden" name="password" value="' . $person->get_password() . ')">');

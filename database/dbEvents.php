@@ -18,16 +18,16 @@
 include_once(dirname(__FILE__).'/../domain/Event.php');
 include_once('dbinfo.php');
 
-echo ("CALLS \n");
+//echo ("CALLS \n");
 function add_Event($event) {
-    echo("fitness grand pacer\n");
+//    echo("fitness grand pacer\n");
     if (!$event instanceof Event)
         die("Error: add_event type mismatch");
     $con=connect();
-    echo("Im in!\n");
+//    echo("Im in!\n");
     $query = "SELECT * FROM dbEvents WHERE id = '" . $event->get_id() . "'";
     $result = mysqli_query($con,$query);
-    echo("HUE BARRY\n");
+//    echo("HUE BARRY\n");
     //if there's no entry for this id, add it
     if ($result == null || mysqli_num_rows($result) == 0) {
         mysqli_query($con,'INSERT INTO dbEvents VALUES("' .
@@ -39,12 +39,12 @@ function add_Event($event) {
                 $event->get_city() . '","' .
                 $event->get_zip() .
                 '");');					
-        echo("We got the goods\n");        
+//        echo("We got the goods\n");        
         mysqli_close($con);
         return true;
     }
     mysqli_close($con);
-    echo("badabing\n");
+//    echo("badabing\n");
     return false;
 
 }
@@ -90,7 +90,10 @@ function retrieve_Event($id) {
 // return array of Persons.
 function retrieve_events_by_name ($name) {
 	$events = array();
-	if (!isset($name) || $name == "" || $name == null) return $events;
+	if (!isset($name) || $name == "" || $name == null){ 
+        $events = retrieveall_dbEvents();
+        return $events;
+    }
 	$con=connect();
 	$name = ($name);
     $query = "SELECT * FROM dbEvents WHERE name = '" . $name ."'";
@@ -100,6 +103,25 @@ function retrieve_events_by_name ($name) {
         $events[] = $the_event;
     }
     return $events;	
+}
+
+function retrieveall_dbEvents(){
+    $con = connect();
+    $query = "Select * from dbEvents";
+    $result = mysqli_query($con,$query);
+    $theEvents = array();
+    if ($result == null || mysqli_num_rows($result) == 0){
+        mysqli_close($con);
+        return false;
+    }
+    while ($result_row = mysqli_fetch_assoc($result)){
+        $theEvent = make_a_event($result_row);
+        $theEvents[] = $theEvent;
+    }
+
+    return $theEvents;
+
+
 }
 
 /*

@@ -12,9 +12,7 @@ include_once('database/dbShifts.php');
 include_once('domain/Shift.php');
 
 if (isset($_POST['_form_submit'])) {
-	if  ($_POST['_form_submit'] == 'reportportland')
-		show_report('portland');
-	else show_report('bangor');
+ show_report('bangor');
 }
 
 function show_report($venue) {
@@ -383,7 +381,7 @@ function civil_time($army_time){
 
 // Improve venue display by using associative array, i.e, turning fam --> "Family Room" 
 function pretty_venue($v){
-	$venue = array('portland' => 'RMH Portland', 'bangor' => 'RMH Bangor');
+	$venue = array( 'angels' => 'Angels on Wheels');
 		return $venue[$v];
 }
 

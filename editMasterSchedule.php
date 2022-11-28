@@ -31,7 +31,7 @@ session_cache_expire(30);
                     die("<p>Only managers can edit the master schedule.</p>");
                 }
                 $group = $_GET['group'];         // 1st
-                $venue = $_GET['venue'];         // portland
+                $venue = $_GET['venue'];         // 
                 $day = $_GET['day'];             // Mon
                 $shiftname = $_GET['shift'];     // 9-12
                 $id = $group.":".$day.":".$shiftname.":".$venue;
@@ -177,7 +177,7 @@ session_cache_expire(30);
                 }
 
                 function process_fill_vacancy($post, $msentry) {
-                	$venues = array("portland"=>"RMH Portland", "bangor"=>"RMH Bangor");
+                	$venues = array("angels"=>"Angels on Wheels");
                 	if (!array_key_exists('_submit_fill_vacancy', $post))
                         return false;
                     echo "<table align=\"center\"><tr><td align=\"center\" width=\"450\"><b>

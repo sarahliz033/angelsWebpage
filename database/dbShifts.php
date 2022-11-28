@@ -193,7 +193,7 @@ function get_shift_venue($id) {
 
 function get_shift_name_from_id($id) {
 	if (strpos($id,"portland")>0) $shift_name = "Portland House Shift: ";
-	else $shift_name = "Bangor House Shift: <br>";
+	else $shift_name = "bangor House Shift: <br>";
     $shift_name .= date("l F j, Y", mktime(0, 0, 0, get_shift_month($id), get_shift_day($id), get_shift_year($id)));
     $shift_name = $shift_name . " ";
     $st = get_shift_start($id);

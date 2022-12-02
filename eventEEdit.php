@@ -13,16 +13,18 @@
  */
 session_start();
 session_cache_expire(30);
-include_once('database/dbPersons.php');
-include_once('domain/Person.php');
+//include_once('database/dbPersons.php');
+include_once('database/dbEvents.php');
+//include_once('domain/Person.php');
+include_once('domain/Event.php');
 include_once('database/dbApplicantScreenings.php');
 include_once('domain/ApplicantScreening.php');
 include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
-
 if ($id == 'new') {
-    $person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
-                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");
+    /*$person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");*/
+    $event = new Event(null, 'new', null, null, null, null, null);
 } else {
     $person = retrieve_person($id);
     if (!$person) { // try again by changing blanks to _ in id
@@ -38,7 +40,7 @@ if ($id == 'new') {
 <html>
     <head>
         <title>
-            Editing <?PHP echo($person->get_first_name() . " " . $person->get_last_name()); ?>
+            Editing <?PHP //echo($person->get_first_name() . " " . $person->get_last_name()); ?>
         </title>
         <link rel="stylesheet" href="lib/jquery-ui.css" />
         <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -58,14 +60,17 @@ if ($id == 'new') {
             <?PHP include('header.php'); ?>
             <div id="content">
                 <?PHP
-                include('personValidate.inc');
-                if ($_POST['_form_submit'] != 1)
+                //include('personValidate.inc');
+                if ($_POST['_form_submit'] != 1){
                 //in this case, the form has not been submitted, so show it
                     include('personFForm.inc');
+                }
                 else {
                     //in this case, the form has been submitted, so validate it
-                    $errors = validate_form($person);  //step one is validation.
-                    // errors array lists problems on the form submitted
+                    //echo('AGHH');
+                  //  $errors = validate_form($person);  //step one is validation.
+                    $errors = False;
+                    // errors array lists problems on the form submitteda
                     if ($errors) {
                         // display the errors and the form to fix
                         show_errors($errors);
@@ -98,9 +103,10 @@ if ($id == 'new') {
                         include('personFForm.inc');
                     }
                     // this was a successful form submission; update the database and exit
-                    else
-                        process_form($id,$person);
+                    else{
+                        process_form($id,$event);
                         echo "</div>";
+                    }
                     include('footer.inc');
                     echo('</div></body></html>');
                     die();
@@ -109,20 +115,20 @@ if ($id == 'new') {
                 /**
                  * process_form sanitizes data, concatenates needed data, and enters it all into a database
                  */
-                function process_form($id,$person) {
+                function process_form($id,$event) {
                     //echo($_POST['first_name']);
                     //step one: sanitize data by replacing HTML entities and escaping the ' character
-                    if ($person->get_first_name()=="new")
-                   		$first_name = trim(str_replace('\\\'', '', htmlentities(str_replace('&', 'and', $_POST['first_name']))));
+                    if ($event->get_name()=="new")
+                   		$name = trim(str_replace('\\\'', '', htmlentities(str_replace('&', 'and', $_POST['first_name']))));
                     else
-                    	$first_name = $person->get_first_name();
-                    $last_name = trim(str_replace('\\\'', '\'', htmlentities($_POST['last_name'])));
-                    $location = $_POST['location'];
+                    	$first_name = $event->get_name();
+                    //$last_name = trim(str_replace('\\\'', '\'', htmlentities($_POST['last_name'])));
+                    //$location = $_POST['location'];
                     $address = trim(str_replace('\\\'', '\'', htmlentities($_POST['address'])));
                     $city = trim(str_replace('\\\'', '\'', htmlentities($_POST['city'])));
                     $state = trim(htmlentities($_POST['state']));
                     $zip = trim(htmlentities($_POST['zip']));
-                    if ($person->get_first_name()=="new") {
+                    /*if ($person->get_first_name()=="new") {
                     	$phone1 = trim(str_replace(' ', '', htmlentities($_POST['phone1'])));
                     	$clean_phone1 = preg_replace("/[^0-9]/", "", $phone1);
                     	$phone1type = $_POST['phone1type'];
@@ -174,7 +180,8 @@ if ($id == 'new') {
                     $birthday = $_POST['birthday'];
                     $start_date = $_POST['start_date'];
                     $howdidyouhear = $_POST['howdidyouhear'];
-                    $notes = trim(str_replace('\\\'', '\'', htmlentities($_POST['notes'])));
+                    */
+                    $description = trim(str_replace('\\\'', '\'', htmlentities($_POST['notes'])));
                     //used for url path in linking user back to edit form
                     $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
                     //step two: try to make the deletion, password change, addition, or change
@@ -226,24 +233,23 @@ if ($id == 'new') {
 
                     // try to add a new person to the database
                     else if ($_POST['old_id'] == 'new') {
-                        $id = $first_name . $clean_phone1;
+                        $id = get_max_id(); //= $first_name . $clean_phone1;
+                        //$id = srand(time(0)); //= $first_name . $clean_phone1;   //Yall better fix this   <-------
                         //check if there's already an entry
-                        $dup = retrieve_person($id);
-                        if ($dup)
-                            echo('<p class="error">Unable to add ' . $first_name . ' ' . $last_name . ' to the database. <br>Another person with the same name and phone is already there.');
-                        else {
-                        	$newperson = new Person($first_name, $last_name, $location, $address, $city, $state, $zip, $clean_phone1, $phone1type, $clean_phone2,$phone2type,
-                        				$email, $type, $screening_type, $screening_status, $status, $employer, $position, $credithours,
-                                        $commitment, $motivation, $specialties, $convictions, $availability, $schedule, $hours, 
-                                        $birthday, $start_date, $howdidyouhear, $notes, "");
-                            $result = add_person($newperson);
-                            if (!$result)
+                        //$dup = retrieve_person($id);
+                        //if ($dup)
+                        //    echo('<p class="error">Unable to add ' . $first_name . ' ' . $last_name . ' to the database. <br>Another person with the same name and phone is already there.');
+                        //else {
+                        	$newevent = new Event($id, $name, $description, $address, $state, $city, $zip);
+                            $result = add_event($newevent);
+                            /*if (!$result)
                                 echo ('<p class="error">Unable to add " .$first_name." ".$last_name. " in the database. <br>Please report this error to the House Manager.');
                             else if ($_SESSION['access_level'] == 0)
                                 echo("<p>Your application has been successfully submitted.<br>  The House Manager will contact you soon.  Thank you!");
                             else
-                                echo('<p>You have successfully added <a href="' . $path . 'personEdit.php?id=' . $id . '"><b>' . $first_name . ' ' . $last_name . ' </b></a> to the database.</p>');
-                        }
+                            */
+                            echo('<p>You have successfully added <a href="' . $path . 'eventEEdit.php?id=' . $id . '"><b>' . $name . ' </b></a> to the database.</p>');
+                       // }
                     }
 
                     // try to replace an existing person in the database by removing and adding

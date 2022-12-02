@@ -48,7 +48,6 @@ if ($_SESSION['access_level'] == 0) {
 ?>
 <form method="POST">
     <input type="hidden" name="old_id" value=<?PHP echo("\"" . $id . "\""); ?>>
-    <input type="hidden" name="old_pass" value=<?PHP echo("\"" . $person->get_password() . "\""); ?>>
     <input type="hidden" name="_form_submit" value="1">
     <script>
 			$(function(){
@@ -58,26 +57,26 @@ if ($_SESSION['access_level'] == 0) {
 			})
 	</script>
     <?PHP 
-    	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
-        echo '<table><tr><td>Date: '. 
-	             '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
+    //	$venues = array('portland'=>"Portland House", 'bangor'=>"Bangor House");       
+       // echo '<table><tr><td>Date: '. 
+	   //          '</td><td colspan=2><input name="start_date" type="text" id="start_date" value="'.$person->get_start_date().'">';
 	   //	echo "</td></tr><tr><td>Location<span style='font-size:x-small;color:FF0000'>*</span>: </td>";	
 	   //	foreach ($venues as $venue=>$venuename) {
 	   //		echo ('<td><input type="radio" name="location" value="' .$venue.'"'. ($person->get_venue()==$venue?' checked':'').'>');
 	   // 	echo "</td><td>".$venuename."</td>";
 	   //	}
-	   	echo "</tr></table><br>"; 
+	   //	echo "</tr></table><br>"; 
     ?>
     <fieldset>
         <legend>Event information:</legend>
     <?php
-        if ($person->get_first_name()=="new")
-        	echo '<p>Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="first_name" tabindex="1" value="'.$person->get_first_name().'">';
+        if ($event->get_name()=="new")
+        	echo '<p>Name<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="first_name" tabindex="1" value="'.$event->get_name().'">';
         else 
         	echo '<p>First Name: '.$person->get_first_name();
     ?>  &nbsp;&nbsp;&nbsp;&nbsp;  
-        <p>Address<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="address" tabindex="3" size=40 value="<?PHP echo($person->get_address()) ?>">
-        <p>City<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="city" tabindex="4" value="<?PHP echo($person->get_city()) ?>">
+        <p>Address<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="address" tabindex="3" size=40 value="<?PHP echo($event->get_address()) ?>">
+        <p>City<span style="font-size:x-small;color:FF0000">*</span>: <input type="text" name="city" tabindex="4" value="<?PHP echo($event->get_city()) ?>">
         State, Zip<span style="font-size:x-small;color:FF0000">*</span>:
             <select name="state" tabindex="5">
 <?PHP
@@ -87,7 +86,7 @@ $states = array("AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA"
     "WV", "WI", "WY");
 foreach ($states as $st) {
     echo "<option value='" . $st . "' ";
-    if ($person->get_state() == $st)
+    if ($event->get_state() == $st)
         echo("SELECTED");
     else if ($id == "new" && $st == "ME")
         echo("SELECTED");
@@ -95,7 +94,7 @@ foreach ($states as $st) {
 }
 ?>
 </select>,
-<input type="text" name="zip" size="5" tabindex="6" value="<?PHP echo($person->get_zip()) ?>">
+<input type="text" name="zip" size="5" tabindex="6" value="<?PHP echo($event->get_zip()) ?>">
 <?php     
         $phonetypes = array("home", "cell", "work");
         //if ($person->get_first_name()=="new") {
@@ -123,7 +122,7 @@ foreach ($states as $st) {
 if ($_SESSION['access_level']==2) {
 	echo('<p>Event Description:<br />');
 	echo('<textarea name="notes" rows="2" cols="75">');
-	echo($person->get_notes().'</textarea>'); // This needs to become $event->get_description();
+	echo($event->get_description().'</textarea>'); // This needs to become $event->get_description();
 }
 /*
 echo '<fieldset> <legend>Employment:</legend>';
@@ -321,15 +320,17 @@ if ($_SESSION['access_level']==0)
             echo "</fieldset>";
         }
         */
-        echo('<input type="hidden" name="schedule" value="' . implode(',', $person->get_schedule()) . '">');
+        /*echo('<input type="hidden" name="schedule" value="' . implode(',', $person->get_schedule()) . '">');
         echo('<input type="hidden" name="hours" value="' . implode(',', $person->get_hours()) . '">');
         echo('<input type="hidden" name="password" value="' . $person->get_password() . ')">');
-        echo('<input type="hidden" name="_submit_check" value="1"><p>');
+        echo('<input type="hidden" name="_submit_check" value="1"><p>'); */
         if ($_SESSION['access_level'] == 0)
             echo('By hitting <input type="submit" value="Submit" name="Submit Edits">, I understand the importance of this volunteer 
             		commitment and have answered the application questions honestly and to the best of my knowledge.<br /><br />');
-        else
+        else{
+            echo('<br></br>');
             echo('Hit <input type="submit" value="Submit" name="Submit Edits"> to submit these edits.<br /><br />');
+        }
         if ($id != 'new' && $_SESSION['access_level'] >= 2) {
             echo ( 
             'Hit <input type="submit" value="Delete" name="deleteMe"> to delete this entry. <br />' .

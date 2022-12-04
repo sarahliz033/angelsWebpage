@@ -6,7 +6,7 @@ body{
     /* background:#001460; */
     background:#6e0d8b;
     font-family:serif;
-    font-size:13px;
+    font-size:14px;
     color: 	#000000;
 }
 
@@ -17,7 +17,7 @@ h3 {padding-left: 20px}
 
 /* TABLE STYLES */
 table { border-collapse:collapse; font-family:serif;}
-td {border: none; font-size:12px; padding:3px; }
+td {border: none; font-size:14px; padding:3px; }
 
 table.searchResults{ border-collapse:collapse;vertical-align:middle; font-family:serif; padding-left:15px;}
 td.searchResults {border: none; font-size:12px; padding-top:3px; padding-bottom:3px; padding-left:6px; padding-right:6px;}
@@ -34,7 +34,7 @@ table#areport{
 table#areport td{
 	border:none;
 	text-align:center;
-	font-size:12px;
+	font-size:1px;
 	padding-top:8x;
 	padding-bottom:8px;
 	padding-left:6px;
@@ -44,6 +44,8 @@ table#areport td{
 table#spacedRowTable td{
 	padding-top:12px;
 }
+
+
 
 /* LINK STYLES */
 A			{ color: #7a54aa; text-decoration: none; img-decoration: none; }

@@ -111,8 +111,6 @@ foreach ($states as $st) {
         	echo '<input type="radio" name="phone2type" value="'.$pvalue.'"'.($person->get_phone2type()==$pvalue?" checked":"").'>'.$pvalue.' ';
         
         echo '<p>Birth date: '. '<input name="birthday" type="text" id="birthday" tabindex="9" value="'.$person->get_birthday().'">';
-        if ($id=='new')
-        	echo ' (Applicants younger than 18 should contact RMH for a separate application)';
         echo '<p>Email address: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
 ?>
 <script src="lib/jquery-1.9.1.js"></script>
@@ -146,15 +144,14 @@ echo '</fieldset>';
 
 echo '<fieldset> <legend>Volunteer Information:</legend>';
 
-echo '<p>How did you hear about RMHC volunteer opportunities? ';
+echo '<p>How did you hear about Angels on Wheels volunteer opportunities? ';
 echo '<p><input type="radio" name="howdidyouhear" value="internet" '.($person->get_howdidyouhear()=="internet"?"checked":"").'>Internet search or website'.
 		'&nbsp;&nbsp;<input type="radio" name="howdidyouhear" value="family" '.($person->get_howdidyouhear()=="family"?"checked":"").'>Family or friend'.
 		'&nbsp;&nbsp;<input type="radio" name="howdidyouhear" value="volunteer" '.($person->get_howdidyouhear()=="volunteer"?"checked":"").'>Current volunteer'.
 		'&nbsp;&nbsp;<input type="radio" name="howdidyouhear" value="other" '.($person->get_howdidyouhear()=="other"?"checked":"").'>other';
-echo '<p>Can you make a commitment to volunteer at RMH for at least one year? <br>(one semester for college students): ';
 echo '<input type="radio" name="commitment" value="yes" '.($person->get_commitment()=="yes"?"checked":"").'>yes'.
  		'&nbsp;&nbsp;<input type="radio" name="commitment" value="no" '.($person->get_commitment()!="yes"?"checked":"").'>no';
-echo('<p>Why are you interested in volunteering at the Ronald McDonald House?<br />');
+echo('<p>Why are you interested in volunteering at Angels on Wheels?<br />');
 echo('<textarea name="motivation" rows="3" cols="75">');
 echo($person->get_motivation());
 echo('</textarea>');
@@ -208,18 +205,18 @@ $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations
 						20-25 people Portland). Groups should be limited to 6-8 people.', 
 		'events' => ' -- Helps with special projects and fundraising events that take place occasionally during the year.', 
 		'manager' => ' -- This is a restricted level of Homebase access for House staff and experienced volunteers.');
-echo('<p>Position type:');
+//echo('<p>Position type:');
 // $ts = $types;
-echo('<span style="font-size:x-small;color:FF0000">*</span> (check one or more)<p>');
+//echo('<span style="font-size:x-small;color:FF0000">*</span> (check one or more)<p>');
 
-foreach ($types as $key => $value) {
-    echo ('&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="type[]" value=' . $key);
-    if (in_array($key,$person->get_type()) !== false)
-        echo(' CHECKED');
-    echo ('>' . $value );
-    if ($_SESSION['access_level']==0)
-    	echo $descriptions[$key].'<p>';
-}
+//foreach ($types as $key => $value) {
+//    echo ('&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="type[]" value=' . $key);
+//    if (in_array($key,$person->get_type()) !== false)
+//        echo(' CHECKED');
+//    echo ('>' . $value );
+//    if ($_SESSION['access_level']==0)
+//    	echo $descriptions[$key].'<p>';
+//}
 
 if ($_SESSION['access_level']==0)
 	echo '<p>House volunteer shifts are three hours and regularly-scheduled shifts can occur weekly, bi-weekly, 

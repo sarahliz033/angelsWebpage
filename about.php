@@ -24,7 +24,9 @@
 		<div id="container">
 			<?PHP include('header.php');?>
 			<div id="content">
-				<strong><i>DEEZ NUTS</i></strong>
+				<strong><i>Angels on Wheels Charity Organization is a newly formed 501(c)(3) 
+					Non-Profit Organization dedicated to changing the lives
+					 of our neighbors who are at risk of becoming homeless and hungry.</i></strong>
 			</div>
 		<?PHP include('footer.inc');?>
 		</div>

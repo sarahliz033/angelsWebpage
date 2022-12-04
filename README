@@ -1,11 +1,70 @@
-Homebase is a web-based application that provides database and scheduling support
-for the Ronald McDonald Houses in Maine and Rhode Island.
+Here this the readMe. 
+first: 
+Login to github 
+then go here https://github.com/megandalster/homebasedemo2017/wiki/Setting-Up-a-MAMP-Server
 
-Installation: Homebase runs on an Apache/MySQL/PHP server.  To install it, visit the
-project Wiki at https://github.com/megandalster/homebasedemo2017/wiki/installation-and-reuse/.
+This will direct you to download a MAMP server, set up your server, put SQL file in MAMP, 
+then you will download the repo. 
 
-Credits: Homebase was originally developed in 2008 by Oliver Radwan, Maxwell Palmer, 
-Nolan McNair, Taylor Talmage, and Allen Tucker.  Since then, it has been significantly 
-upgraded by other student teams and is currently maintained by NPFI (https://npfi.org).
+DO this by cloning: https://github.com/sarahliz033/angelsWebpage.git
 
-License: GNU General Public License v3.0 (https://www.gnu.org/licenses/gpl.txt)
+How to Clone: 
+Log into yourgithubaccount
+On github, create or access the blank repository yourteamsrepo
+In a terminal window, execute the following commands:
+cd /Applications/MAMP/htdocs (on Windows, it's c:\MAMP\htdocs)
+git clone https://github.com/sarahliz033/angelsWebpage.git
+cd homebasedemo2017
+git push --mirror https://github.com/yourgithubaccount/yourteamsrepo
+You will need to enter your GitHub account ID and token here, not your password.
+Each team member should then clone this mirror into their own local directory.
+
+In a terminal window, execute the following commands:
+cd /Applications/MAMP/htdocs (on Windows, it's c:\MAMP\htdocs)
+git clone https://github.com/yourgithubaccount/yourteamsrepo
+
+Troubleshooting Guide/Helpful tips and tricks:
+Webpage won’t display proper information:
+Restart MAMP server 
+Are you in the right directory? 
+In order for the database to connect with the webpage you must be in the MAMP/htdocs/repoName directory on your computer if you are not the webpage will not work
+Have you done?
+git fetch 
+git pull 
+Did you checkout main to see if main is working 
+Does your database match with all the information in the project? 
+For example lets say you add a column to dbPerson in the sql db did you also update the project files? In the database and domain directories. 
+If the information does not match your project will not work.
+
+
+Merging:
+Before you merge into main please make sure your branch works fully. 
+Can I see everything I need to see for an Admin? 
+Can I see everything I need to see for a guest? 
+Can I see everything I need to see for a volunteer? 
+Always ensure you are in a branch. Not main. 
+Merge main into your branch. 
+Resolve merge conflicts. 
+Merge your branch into main. 
+
+
+SQL:
+Everyone must must must have the same SQL tables. 
+If you are merging something into the repo make sure everyone has your SQL file. 
+Easy way to do this. 	
+Go to php admin
+Click the homebasedb
+Go to export 
+Export you SQL file 
+Either: Put this in the drive and tell everyone you have made a db change OR track this with git 
+How to track with git
+Manually add the file to git. (git add yourFileNameHere) 
+Commit this file 
+Push it up 
+Boom now you have added your sql file
+CSS NOT UPDATING:
+
+Clear cache 
+	
+	
+

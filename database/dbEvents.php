@@ -182,6 +182,23 @@ function make_a_event($result_row2) {
     return $theEvent;
 }
 
+
+function get_max_id(){
+    $con = connect();
+    $query = 'SELECT id from dbEvents ORDER BY id DESC LIMIT 1';
+    $result = mysqli_query($con, $query);
+    if ($result == null || mysqli_num_rows($result) == 0){
+            $maxId = 1;
+    }else{
+            $result_row = mysqli_fetch_assoc($result);
+            $maxId = $result_row['id'];
+            $maxId++;
+    }
+    $maxId =  $maxId;
+    $query = ['0'];
+    return $maxId;
+}
+
 /*
 // retrieve only those persons that match the criteria given in the arguments
 function getonlythose_dbEvents($type, $status, $name, $day, $shift, $venue) {

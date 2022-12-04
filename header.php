@@ -46,6 +46,7 @@ include_once(dirname(__FILE__).'/...database/Event.php');
         $permission_array['log.php'] = 2;
         $permission_array['reports.php'] = 2;
         $permission_array['eventSearch.php'] = 2;
+        $permission_array['eventEdit.php'] = 2;
 
         //Check if they're at a valid page for their access level.
         $current_page = strtolower(substr($_SERVER['PHP_SELF'], strpos($_SERVER['PHP_SELF'],"/")+1));
@@ -78,9 +79,10 @@ include_once(dirname(__FILE__).'/...database/Event.php');
 	        if ($_SESSION['access_level'] >= 2) {
 	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Angels on Wheels</a>');
 	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, 
-				        <a href="personEdit.php?id=' . 'new' . '">add, </a> <a href="viewScreenings.php?type=new">screenings</a>');
+                        <a href="personEdit.php?id=' . 'new' . '">add, </a> <a href="viewScreenings.php?type=new">screenings, </a> 
+                        <a href="volunteerFeedbackForm.php?id=' . 'new' . '">feedback</a>');
 	            echo(' | <a href="' . $path . 'reports.php?venue='.$_SESSION['venue'].'">reports</a>');
-	            echo(' | events: <a href="' . $path . 'eventSearch.php?venue='.$_SESSION['venue'].'">search</a>');
+	            echo(' | events: <a href="' . $path . 'eventSearch.php?venue='.$_SESSION['venue'].'">search,</a> <a href="eventEEdit.php?id=' . 'new' . '">add, </a>');
 	        }
 	        echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         }

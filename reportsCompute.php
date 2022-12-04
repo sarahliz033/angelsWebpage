@@ -43,6 +43,9 @@ function show_report($venue) {
 		if (in_array('volunteers', $_POST['report-types'])) {
 				report_all_volunteers($name_from, $name_to, $venue, $export);	
 		}
+		if (in_array('volunteers-email', $_POST['report-types'])) {
+			report_all_volunteers_emails($name_from, $name_to, $venue, $export);	
+	}
 	}
 }
 
@@ -495,5 +498,49 @@ function export_report($heading, $col_labels, $data, $venue) {
 	}
 	fclose($handle);
 }
+//Create a table to display volunteer contact info
+function display_vol_email($report, $export, $venue) { 
+	$col_labels = array("Name","Email");
+	$res = "
+		<table id = 'report'> 
+			<thead>
+			<tr>";
+	$row = "<tr>";
+	
+	foreach($col_labels as $col_name){
+		$row .= "<td><b>".$col_name."</b></td>";
+	}
+	$row .="</tr>";
+	$res .= $row;
+	$res .= "
+			</thead>
+			<tbody>";
+	
+	echo '<div id="target" style="overflow: scroll; width: variable; height: 400px;">';
+	$export_data = array();			       
+	foreach($report as $person){
+		$p = array($person->get_last_name() . ", ". $person->get_first_name(), 
+				$person->get_email());
+		$export_data[] = $p;
+		$res .= "<tr>";
+		foreach ($p as $info)
+			$res .= "<td>". $info . "</td>";
+	    $res .= "</tr>";
+	}
+	$res .= "</tbody></table>";
+	echo $res;
+	echo "</div>";
+	if ($export=="yes") 
+		export_report ("Volunteer Contact Info", $col_labels, $export_data, $venue);
+}
 
+function report_all_volunteers_emails($name_from, $name_to, $venue, $export) {
+	echo ("<br><b>Volunteer Email Information</b><br> Report date: ");
+	echo date("F d, Y")."<br><br>";
+	if($name_from == ""){$name_from="A";}
+	if($name_to == ""){$name_to = "Z";}
+	
+	$report = getall_dbPersons($name_from, $name_to, $venue);
+	display_vol_email($report, $export, $venue);
+}
 ?>

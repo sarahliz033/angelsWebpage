@@ -98,6 +98,7 @@ $(function() {
 	  		<option value="birthdays">* Volunteer Birthdays</option>
 	  		<option value="history">* Volunteer History</option>
 	  		<option value="volunteers">* Volunteer Contact Info</option>
+			<option value="volunteers-email">* Volunteer Emails</option>
 			</select>
 		</td>
 		<td class = "search-description" valign="top">&nbsp;&nbsp; Date Range: 

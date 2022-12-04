@@ -86,7 +86,7 @@ $(function() {
 		<p class = "search-description" id="today">
 		<?php date_default_timezone_set ("America/New_York");
 		$venue = $_GET['venue'];
-		//$venues = array('portland'=>"RMH Portland",'bangor'=>"RMH Bangor");
+		//$venues = array('portland'=>"RMH Portland",'bangor'=>"RMH bangor");
 		echo '<b>'.$venues[$venue]." Volunteer Reports</b><br>Today's date: ".date("F d, Y");
 		echo '</p>';
 		echo '<input type="hidden" name="_form_submit" value="report'.$venue.'" />';?>

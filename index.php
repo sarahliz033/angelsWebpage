@@ -4,6 +4,7 @@
  * software.  It comes with absolutely no warranty. You can redistribute and/or 
  * modify it under the terms of the GNU General Public License as published by the 
  * Free Software Foundation (see <http://www.gnu.org/licenses/ for more information).
+ *
  */
 session_start();
 session_cache_expire(30);
@@ -45,7 +46,7 @@ session_cache_expire(30);
                 <p>
                     <?PHP
                     if ($_SESSION['access_level'] == 0)
-                        echo('<p> To apply for volunteering at the Portland or Bangor Ronald McDonald House, '.
+                        echo('<p> To apply for volunteering at the Portland or bangor Ronald McDonald House, '.
                         		'please select <b>apply</b>.');
                     if ($person) {
                         /*

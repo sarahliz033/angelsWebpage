@@ -24,7 +24,7 @@ include_once('dbinfo.php');
  * id - auto increment
  * time - timestamp time()
  * message - text
- * venue - 'portland' or 'bangor
+ * venue - 'bangor
  */
 function create_dbLog() {
     $con=connect();

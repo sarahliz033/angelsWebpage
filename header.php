@@ -7,6 +7,7 @@
  * (see <http://www.gnu.org/licenses/ for more information).
  * 
  */
+include_once(dirname(__FILE__).'/...database/Event.php');
 ?>
 
 </div>
@@ -44,6 +45,8 @@
         $permission_array['addweek.php'] = 2;
         $permission_array['log.php'] = 2;
         $permission_array['reports.php'] = 2;
+        $permission_array['eventSearch.php'] = 2;
+        $permission_array['eventEdit.php'] = 2;
 
         //Check if they're at a valid page for their access level.
         $current_page = strtolower(substr($_SERVER['PHP_SELF'], strpos($_SERVER['PHP_SELF'],"/")+1));
@@ -59,7 +62,7 @@
         }
         //This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
-		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
+		$venues = array("bangor"=>"RMH bangor");
         
         //they're logged in and session variables are set.
         if ($_SESSION['venue'] =="") { 
@@ -74,11 +77,12 @@
 	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=bangor'.''.'">events</a>');
 	        }
 	        if ($_SESSION['access_level'] >= 2) {
-	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=portland'."".'">Portland, </a>');
-	            echo('<a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Bangor</a>');
+	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Angels on Wheels</a>');
 	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, 
-				        <a href="personEdit.php?id=' . 'new' . '">add, </a> <a href="viewScreenings.php?type=new">screenings</a>');
+                        <a href="personEdit.php?id=' . 'new' . '">add, </a> <a href="viewScreenings.php?type=new">screenings, </a> 
+                        <a href="volunteerFeedbackForm.php?id=' . 'new' . '">feedback</a>');
 	            echo(' | <a href="' . $path . 'reports.php?venue='.$_SESSION['venue'].'">reports</a>');
+	            echo(' | events: <a href="' . $path . 'eventSearch.php?venue='.$_SESSION['venue'].'">search,</a> <a href="eventEEdit.php?id=' . 'new' . '">add, </a>');
 	        }
 	        echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         }

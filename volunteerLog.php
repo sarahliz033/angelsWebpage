@@ -37,7 +37,7 @@ $(function() {
     <form method="POST">
 	<?php 
 	    $person = retrieve_person($_GET['id']);
-		$venues = array('portland' => 'RMH Portland', 'bangor' => 'RMH Bangor');
+		$venues = array( 'angels' => 'Angels on Wheels');
 		if ($_POST['Submit']) {
 			$hours = gather_hours($_POST['from'], $_POST['start_time'], $_POST['end_time'], $_SESSION['venue'], $_POST['hours_worked']);
 			update_hours($person->get_id(), $hours);

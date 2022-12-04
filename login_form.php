@@ -32,7 +32,7 @@
         'After you have logged in, you can change your password.  ');
         echo('<li>(If you are having difficulty logging in or have forgotten your Password, please contact either the 
         		<a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
-        		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>.) ');
+        		or the <a href="mailto:allen@npfi.org"><i>bangor House Manager</i></a>.) ');
         echo '</ul>';
         echo('<p><table><form method="post"><input type="hidden" name="_submit_check" value="true"><tr><td>Username:</td>
         		<td><input type="text" name="user" tabindex="1"></td></tr>
@@ -72,13 +72,13 @@
                 else {
                     echo('<div align="left"><p class="error">Error: invalid username/password<br />if you cannot remember your password, ask either the 
         		<a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
-        		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>. to reset it for you.</p><p>Access to Homebase requires a Username and a Password. <p>For guest access, enter Username <strong>guest</strong> and no Password.</p>');
+        		or the <a href="mailto:allen@npfi.org"><i>bangor House Manager</i></a>. to reset it for you.</p><p>Access to Homebase requires a Username and a Password. <p>For guest access, enter Username <strong>guest</strong> and no Password.</p>');
                     echo('<p>If you are a volunteer, your Username is your first name followed by your phone number with no spaces. ' .
                     'For instance, if your first name were John and your phone number were (207)-123-4567, ' .
                     'then your Username would be <strong>John2071234567</strong>.  ');
                     echo('If you do not remember your password, please contact either the 
         		<a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
-        		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>.');
+        		or the <a href="mailto:allen@npfi.org"><i>bangor House Manager</i></a>.');
                     echo('<p><table><form method="post"><input type="hidden" name="_submit_check" value="true"><tr><td>Username:</td><td><input type="text" name="user" tabindex="1"></td></tr><tr><td>Password:</td><td><input type="password" name="pass" tabindex="2"></td></tr><tr><td colspan="2" align="center"><input type="submit" name="Login" value="Login"></td></tr></table>');
                 }
             } else {
@@ -89,7 +89,7 @@
                 'then your Username would be <strong>John2071234567</strong>.  ');
                 echo('If you do not remember your password, please contact either the 
         		<a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
-        		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>.');
+        		or the <a href="mailto:allen@npfi.org"><i>bangor House Manager</i></a>.');
                 echo('<p><table><form method="post"><input type="hidden" name="_submit_check" value="true"><tr><td>Username:</td><td><input type="text" name="user" tabindex="1"></td></tr><tr><td>Password:</td><td><input type="password" name="pass" tabindex="2"></td></tr><tr><td colspan="2" align="center"><input type="submit" name="Login" value="Login"></td></tr></table>');
             }
         }

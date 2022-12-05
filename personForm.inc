@@ -193,8 +193,8 @@ else {
 	    echo (' SELECTED'); echo('>former</option>');
 }
 echo('</select>');
-// $st = implode(',', $person->get_type());
-$types = array('volunteer' => 'House Volunteer', 'weekendmgr' => 'Weekend Manager', 'sub' => 'Flex shift', 'mealprep' => 'Guest Chef', 'events' => 'Events/Special projects', 'manager' => 'Manager');
+$st = implode(',', $person->get_type());
+$types = array('volunteer' => 'General Volunteer', 'weekendmgr' => 'Driver',  'mealprep' => 'Meal Prep');
 $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations of the House, such as
 				answering phones, assisting families, giving tours, cleaning rooms and common areas, and washing linens.<p>', 
 		'weekendmgr' => ' -- Serves as main point of contact during day and overnight hours. Shifts are 
@@ -205,18 +205,18 @@ $descriptions = array('volunteer' => ' -- Assists with the day-to-day operations
 						20-25 people Portland). Groups should be limited to 6-8 people.', 
 		'events' => ' -- Helps with special projects and fundraising events that take place occasionally during the year.', 
 		'manager' => ' -- This is a restricted level of Homebase access for House staff and experienced volunteers.');
-//echo('<p>Position type:');
-// $ts = $types;
-//echo('<span style="font-size:x-small;color:FF0000">*</span> (check one or more)<p>');
+echo('<p>Position type:');
+ $ts = $types;
+echo('<span style="font-size:x-small;color:FF0000">*</span> (check one or more)<p>');
 
-//foreach ($types as $key => $value) {
-//    echo ('&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="type[]" value=' . $key);
-//    if (in_array($key,$person->get_type()) !== false)
-//        echo(' CHECKED');
-//    echo ('>' . $value );
-//    if ($_SESSION['access_level']==0)
-//    	echo $descriptions[$key].'<p>';
-//}
+foreach ($types as $key => $value) {
+    echo ('&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="type[]" value=' . $key);
+    if (in_array($key,$person->get_type()) !== false)
+        echo(' CHECKED');
+    echo ('>' . $value );
+    if ($_SESSION['access_level']==0)
+    	echo $descriptions[$key].'<p>';
+}
 
 if ($_SESSION['access_level']==0)
 	echo '<p>House volunteer shifts are three hours and regularly-scheduled shifts can occur weekly, bi-weekly, 
